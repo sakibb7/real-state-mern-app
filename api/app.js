@@ -3,6 +3,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route.js";
 import postRouter from "./routes/post.route.js";
+import testRoute from "./routes/test.route.js";
+import { verifyToken } from "./middleware/verifyToken.js";
+import userRoute from "./routes/user.route.js";
 const app = express();
 
 const corsOptions = {
@@ -31,3 +34,5 @@ app.listen(8800, () => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/test", testRoute);
+app.use("/api/users", userRoute);

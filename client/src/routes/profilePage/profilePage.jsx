@@ -1,15 +1,26 @@
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
+import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import "./profilePage.scss";
 
 function ProfilePage() {
+  const {currestUser,updateUser} = useContext(AuthContext)
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    if(!currestUser){
+      navigate("/login")
+    }
+  },[currestUser])
+
+
   const handleLogout = async () => {
     try {
-      const res = apiRequest.post("/auth/logout");
-      localStorage.removeItem("user");
+      await apiRequest.post("/auth/logout");
+      updateUser(null)
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -32,10 +43,10 @@ function ProfilePage() {
               />
             </span>
             <span>
-              Username: <b>John Doe</b>
+              Username: <b>{currestUser !== null  ? currestUser.username : "Sakib"}</b>
             </span>
             <span>
-              E-mail: <b>john@gmail.com</b>
+              E-mail: <b>{currestUser !== null ? currestUser.email : "example@mail.com"}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
