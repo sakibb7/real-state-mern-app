@@ -11,9 +11,9 @@ app.eraser.io for data modeling
 
 
 {
-    "username":"admin222",
-    "email":"test2@mail.com",
-    "password":"sakib123456"
+    "userName":"demoAdmin",
+    "email":"admin@gmail.com",
+    "password":"sakibb123"
 }
 
 //home 2 update check

@@ -1,4 +1,5 @@
 import express from "express";
+import 'dotenv/config'
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route.js";
@@ -20,6 +21,8 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
+
+console.log(process.env.CLIENT_URL);
 
 app.use(cors(corsOptions));
 
